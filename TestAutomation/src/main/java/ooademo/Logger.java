@@ -1,6 +1,6 @@
 package ooademo;
 
-public class Logger {
+public class Logger extends ValidatingLogger {
     private static MessageFilter filter;
     private static MessagePrinter printer;
 
@@ -9,7 +9,8 @@ public class Logger {
         this.printer = printer;
     }
 
-    public static void log(String message, int severity){
+    public void log(String message, int severity){
+        this.validate(message);
         if (filter.filter(message, severity)){
             printer.print(message);
         }
